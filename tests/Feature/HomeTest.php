@@ -17,4 +17,14 @@ class HomeTest extends TestCase
             ->assertStatus(200)
             ->assertSee('No hay etiquetas');
     }
+
+    public function testWithData()
+    {
+        $tag = Tag::factory()->create();
+
+        $this->get('/')
+            ->assertStatus(200)
+            ->assertSee($tag->name)
+            ->assertDontSee('No hay etiquetas');
+    }
 }
